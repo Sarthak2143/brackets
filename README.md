@@ -38,24 +38,28 @@ chmod +x encode.py decode.py
 
 - Encoding
 
-Open `input.txt` in your text editor and add anything that is to be encoded.
+Open `input.txt` or any text file in your text editor and add anything that is to be encoded.
 
 Run the encoder afterwards:
 
 ```bash
-./encode.py
+./encode.py -i <input_file> -o <output_file>
 ```
 
-This will create a new file `encoded.txt` in the current directory.
+This will create a new file `<output_file>` as you passed it in the CLI args in the current directory.
 
 - Decoding
 
-Run `decode.py` to reverse the process, it'll return a file
-`decoded.txt` in the same directory. This file will he the same as our `input.txt`.
+Run `decode.py` to reverse the process. 
+
+```bash
+./decode.py -i <encoded_file> -o <decoded_file>
+```
+It'll return a file `<decoded_file>` as you passed the name in CLI args in the same directory. This file will he the same as our `<input_file>`.
 
 
 ## TODO
 
 - [x] Fix Decoder to decode into plain text.
-- [ ] Use CLI arguments to pass in input and output file.
+- [x] Use CLI arguments to pass in input and output file.
 - [ ] Use more paranthesis.
