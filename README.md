@@ -59,3 +59,4 @@ Run `decode.py` to reverse the process, it'll return a file
 
 - [ ] Fix Decoder to decode into plain text.
 - [ ] Use CLI arguments to pass in input and output file.
+- [ ] Use more paranthesis.
