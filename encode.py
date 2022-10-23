@@ -38,7 +38,7 @@ def main():
         binary_to_brackets(binary, args.output[0])
     else:
         sys.stderr.write("No or some arguments were passed. Use the flag '--help' for all flags.\n")
-        sys.exit(0)
+        sys.exit(1)
 
 def binary_to_brackets(data, output_file):
     """
@@ -63,8 +63,12 @@ def text_to_binary(input_file):
     Processes text into binary.
     """
     # opening file
-    with open(input_file, "r") as file:
-        txt = file.read()
+    try:
+        with open(input_file, "r") as file:
+            txt = file.read()
+    except FileNotFoundError:
+        sys.stderr.write(f"File: {input_file} not found.\n")
+        sys.exit(1)
     # converting text to bin
     res = "".join(format(ord(i), '08b') for i in txt)
     # wrapping res into chunks of 8

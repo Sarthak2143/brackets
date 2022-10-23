@@ -36,12 +36,16 @@ def main():
         decode(args.input[0], args.output[0])
     else:
         sys.stderr.write("No or some arguments were passed. Use the flag '--help' for all flags.\n")
-        sys.exit(0)
+        sys.exit(1)
 
 def decode(input_file, output_file):
     # opening input file in read mode
-    with open(input_file, "r") as file:
-        data = file.read()
+    try:
+        with open(input_file, "r") as file:
+            data = file.read()
+    except FileNotFoundError:
+        sys.stderr.write(f"File: {input_file} not found.\n")
+        sys.exit(1)
     # we'll add our decoded data in result
     result = ""
     # iterating through data from input file
