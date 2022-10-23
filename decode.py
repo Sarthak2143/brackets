@@ -15,17 +15,20 @@ def decode(input_file, output_file):
             result += "0"
         elif i == ")":
             result += "1"
-    # wrapping result into chunks of 8
-    result = re.findall("........?", result)
-    string = ""
-    # adding them to a string with spaces
-    for i in result:
-        string += i + " "
+
+    # Initializing the binary string to a int base 2
+    binary_int = int(result, 2)
+    # getting the byte number 
+    byte_number = binary_int.bit_length() + 7 // 8
+    # getting an array of bytes 
+    array = binary_int.to_bytes(byte_number, "big")
+    # converting array to ASCII
+    ascii_text = array.decode()
+
     # opening output file in write mode
     with open(output_file, "w") as out:
         # writing result to output file
-        # with removing extra blank space
-        out.write(string[:len(string)-1])
+        out.write(ascii_text)
 
 if __name__ == "__main__":
     # decoding...

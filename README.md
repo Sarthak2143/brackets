@@ -51,12 +51,11 @@ This will create a new file `encoded.txt` in the current directory.
 - Decoding
 
 Run `decode.py` to reverse the process, it'll return a file
-`decoded.txt` in the same directory. 
+`decoded.txt` in the same directory. This file will he the same as our `input.txt`.
 
-> `decode.txt` only contains the decoded binary not the decoded plain text.
 
 ## TODO
 
-- [ ] Fix Decoder to decode into plain text.
+- [x] Fix Decoder to decode into plain text.
 - [ ] Use CLI arguments to pass in input and output file.
 - [ ] Use more paranthesis.
