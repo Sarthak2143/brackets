@@ -1,12 +1,44 @@
 #! /usr/bin/env python3
 
-#Importing regex i.e Regular Expressions
 import re
+import argparse
+import sys
 
 def main():
     # main function
-    binary = text_to_binary("input.txt")
-    binary_to_brackets(binary, "encoded.txt")
+    # creating the ArgParser Object
+    parser = argparse.ArgumentParser(
+            description = "Encoder for brackets."
+            )
+    # adding args
+    # adding args for input file 
+    parser.add_argument(
+            "-i",
+            "--input",
+            type = str,
+            nargs = 1,
+            metavar = "input_file",
+            default = None,
+            help = "Adds input file for encoding."
+            )
+    # adding args for output file 
+    parser.add_argument(
+            "-o",
+            "--output",
+            type = str,
+            nargs = 1,
+            metavar = "output_file",
+            default = None,
+            help = "Adds output file for encoded data."
+            )
+    # parsing args from CLI
+    args = parser.parse_args()
+    if args.input != None and args.output != None:
+        binary = text_to_binary(args.input[0])
+        binary_to_brackets(binary, args.output[0])
+    else:
+        sys.stderr.write("No or some arguments were passed. Use the flag '--help' for all flags.\n")
+        sys.exit(0)
 
 def binary_to_brackets(data, output_file):
     """

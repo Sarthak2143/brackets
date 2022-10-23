@@ -1,6 +1,42 @@
 #! /usr/bin/env python3
 
 import re
+import argparse
+import sys
+
+def main():
+    "main function"
+    # creating the argparser object
+    parser = argparse.ArgumentParser(
+            description = "Decoder for brackets."
+            )
+    # adding args
+    parser.add_argument(
+            "-i",
+            "--input",
+            type = str,
+            nargs = 1,
+            metavar = "input_file",
+            default = None,
+            help = "Adds input file for decoding."
+            )
+    # adding args for output file 
+    parser.add_argument(
+            "-o",
+            "--output",
+            type = str,
+            nargs = 1,
+            metavar = "output_file",
+            default = None,
+            help = "Adds output file for decoded data."
+            )
+    # parsing args from CLI
+    args = parser.parse_args()
+    if args.input != None and args.output != None:
+        decode(args.input[0], args.output[0])
+    else:
+        sys.stderr.write("No or some arguments were passed. Use the flag '--help' for all flags.\n")
+        sys.exit(0)
 
 def decode(input_file, output_file):
     # opening input file in read mode
@@ -31,5 +67,5 @@ def decode(input_file, output_file):
         out.write(ascii_text)
 
 if __name__ == "__main__":
-    # decoding...
-    decode("encoded.txt", "decoded.txt")
+    # running the scrip
+    main()
